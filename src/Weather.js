@@ -37,56 +37,61 @@ export default function WeatherComponent() {
 
   return (
     <div className="weather-app">
-      <div className="weather-card">
-        <h1>Weather Forecast</h1>
-        <form onSubmit={handleSubmit}>
-          <div className="search-container">
-            <input
-              type="text"
-              placeholder="Enter city name"
-              value={city}
-              onChange={handleCityChange}
-            />
-            <button type="submit" disabled={loading}>
-              {loading ? 'Searching...' : 'Search'}
-            </button>
-          </div>
-        </form>
+      <div className="container mt-3 d-flex flex-column align-items-center justify-content-center">
+        <h1>Weather App</h1>
 
-        {loading && <p className="loading">Loading...</p>}
-        {error && <p className="error">{error}</p>}
-
-        {weather && (
-          <div className="weather-info">
-            <h2>{weather.name}, {weather.sys.country}</h2>
-            <div className="temperature">
-              <img
-                src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
-                alt={weather.weather[0].description}
+        <div className="weather-card">
+          <h1>Weather Forecast</h1>
+          <form onSubmit={handleSubmit}>
+            <div className="search-container">
+              <input
+                type="text"
+                placeholder="Enter city name"
+                value={city}
+                onChange={handleCityChange}
               />
-              <span>{Math.round(weather.main.temp)}°C</span>
+              <button type="submit" disabled={loading}>
+                {loading ? 'Searching...' : 'Search'}
+              </button>
             </div>
-            <p className="description">{weather.weather[0].description}</p>
-            <div className="details">
-              <div className="detail-item">
-                <span className="label">Feels like:</span>
-                <span>{Math.round(weather.main.feels_like)}°C</span>
+          </form>
+
+          {loading && <p className="loading">Loading...</p>}
+          {error && <p className="error">{error}</p>}
+
+          {weather && (
+            <div className="weather-info">
+              <h2>{weather.name}, {weather.sys.country}</h2>
+              <div className="temperature">
+                <img
+                  src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
+                  alt={weather.weather[0].description}
+                />
+                <span>{Math.round(weather.main.temp)}°C</span>
               </div>
-              <div className="detail-item">
-                <span className="label">Wind:</span>
-                <span>{weather.wind.speed} m/s</span>
-              </div>
-              <div className="detail-item">
-                <span className="label">Humidity:</span>
-                <span>{weather.main.humidity}%</span>
-              </div>
-              <div className="detail-item">
-                <span className="label">Max Temp:</span>
-                <span>{Math.round(weather.main.temp_max)}°C</span>
+              <p className="description">{weather.weather[0].description}</p>
+              <div className="details">
+                <div className="detail-item">
+                  <span className="label">Feels like:</span>
+                  <span>{Math.round(weather.main.feels_like)}°C</span>
+                </div>
+                <div className="detail-item">
+                  <span className="label">Wind:</span>
+                  <span>{weather.wind.speed} m/s</span>
+                </div>
+                <div className="detail-item">
+                  <span className="label">Humidity:</span>
+                  <span>{weather.main.humidity}%</span>
+                </div>
+                <div className="detail-item">
+                  <span className="label">Max Temp:</span>
+                  <span>{Math.round(weather.main.temp_max)}°C</span>
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
+
       </div>
     </div>
   );
